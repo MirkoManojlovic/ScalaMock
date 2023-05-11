@@ -23,20 +23,20 @@ package org.scalamock.context
 import scala.collection.mutable.ListBuffer
 
 private[scalamock] class CallLog {
-  private val warnInterval = sys.props.get("scalamock.calls.warn").map(_.toInt).getOrElse(Int.MaxValue)
-  private var warnThreshold = warnInterval
+  private val warnInterval: Int = sys.props.get("scalamock.calls.warn").map(_.toInt).getOrElse(Int.MaxValue)
+  private var warnThreshold: Int = warnInterval
+  private val log = new ListBuffer[Call]
 
-  def +=(call: Call) = this.synchronized {
+  def +=(call: Call): Unit = this.synchronized {
     if (log.size > warnThreshold) {
       println(s"ScalaMock - warning: high number of calls recorded (>$warnThreshold). This may be a bug in your test suite")
       warnThreshold += warnInterval
     }
     log += call
   }
-  
-  def foreach(f: Call => Unit) = log foreach f
-  
-  override def toString = log mkString("  ", "\n  ", "")
-  
-  private val log = new ListBuffer[Call]
+
+  def foreach(f: Call => Unit): Unit = log.foreach(f)
+
+  override def toString: String = log.mkString("  ", "\n  ", "")
+
 }
