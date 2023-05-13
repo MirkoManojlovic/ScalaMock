@@ -24,6 +24,7 @@ package org.scalamock.context
 class MockNameGenerator {
   private var mockId: Int = 0
 
+  // TODO: M return String here
   def generateMockName(prefix: String): Symbol = this.synchronized {
     mockId += 1
     Symbol("%s-%d".format(prefix, mockId))

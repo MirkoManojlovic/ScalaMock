@@ -47,6 +47,7 @@ private[scalamock] trait MockContext {
   private[scalamock] def errorContext(callLog: CallLog, expectationContext: Handlers) =
     s"Expected:\n$expectationContext\n\nActual:\n$callLog"
 
+  // TODO: M return String here
   /** Generates unique names for mocks, stubs, and mock functions */
   def generateMockDefaultName(prefix: String): Symbol = mockNameGenerator.generateMockName(prefix)
 }
