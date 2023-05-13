@@ -33,7 +33,7 @@ private[scalamock] trait MockContext {
   protected def newExpectationException(message: String, methodName: Option[Symbol] = None): ExpectationException
 
   private[scalamock] def add[E <: CallHandler[_]](e: E) = {
-    assert(currentExpectationContext != null, "Null expectation context - missing withExpectations?")
+    assert(currentExpectationContext ne null, "Null expectation context - missing withExpectations?")
     currentExpectationContext.add(e)
     e
   }
