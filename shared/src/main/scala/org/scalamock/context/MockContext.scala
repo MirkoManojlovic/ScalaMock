@@ -38,12 +38,15 @@ private[scalamock] trait MockContext {
     e
   }
 
+  // TODO: M use """ for strings
   private[scalamock] def reportUnexpectedCall(call: Call) =
     throw newExpectationException(s"Unexpected call: $call\n\n${errorContext(callLog, expectationContext)}", Some(call.target.name))
 
+  // TODO: M use """ for strings
   private[scalamock] def reportUnsatisfiedExpectation(callLog: CallLog, expectationContext: Handlers) =
     throw newExpectationException(s"Unsatisfied expectation:\n\n${errorContext(callLog, expectationContext)}")
 
+  // TODO: M use """ for strings
   private[scalamock] def errorContext(callLog: CallLog, expectationContext: Handlers) =
     s"Expected:\n$expectationContext\n\nActual:\n$callLog"
 
