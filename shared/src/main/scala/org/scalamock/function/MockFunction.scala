@@ -36,8 +36,8 @@ class MockFunction0[R: Defaultable](mockContext: MockContext, name: Symbol)
   def expects() = mockContext.add(new CallHandler0[R](this))
   def expects(matcher: FunctionAdapter0[Boolean]) = mockContext.add(new CallHandler0[R](this, matcher))
   
-  def stubs() = mockContext.add(new CallHandler0[R](this)).anyNumberOfTimes
-  def stubs(matcher: FunctionAdapter0[Boolean]) = mockContext.add(new CallHandler0[R](this, matcher)).anyNumberOfTimes
+  def stubs() = mockContext.add(new CallHandler0[R](this)).anyNumberOfTimes()
+  def stubs(matcher: FunctionAdapter0[Boolean]) = mockContext.add(new CallHandler0[R](this, matcher)).anyNumberOfTimes()
 }
 
 class MockFunction1[T1, R: Defaultable](mockContext: MockContext, name: Symbol)
