@@ -123,7 +123,8 @@ object CallHandler {
 
 trait Verify { self: CallHandler[_] =>
   
-  private[scalamock] override def handle(call: Call) = sys.error("verify should appear after all code under test has been exercised")
+  private[scalamock] override def handle(call: Call) =
+    sys.error("verify should appear after all code under test has been exercised")
   
   private[scalamock] override def verify(call: Call) = {
     if (self.target == call.target && argumentMatcher(call.arguments)) {
