@@ -62,7 +62,8 @@ class CallHandler[R: Defaultable](private[scalamock] val target: FakeFunction, p
     onCallHandler = handler
     this.asInstanceOf[Derived]
   }
-  
+
+  // TODO: make this a bit prettier
   override def toString = {
     val expected = expectedCalls match {
       case NEVER => "never"
@@ -112,9 +113,9 @@ object CallHandler {
   private[scalamock] val ONCE = 1 to 1
   private[scalamock] val TWICE = 2 to 2
   
-  private[scalamock] val ANY_NUMBER_OF_TIMES = 0 to scala.Int.MaxValue - 1
-  private[scalamock] val AT_LEAST_ONCE = 1 to scala.Int.MaxValue - 1
-  private[scalamock] val AT_LEAST_TWICE = 2 to scala.Int.MaxValue - 1
+  private[scalamock] val ANY_NUMBER_OF_TIMES = 0 until scala.Int.MaxValue
+  private[scalamock] val AT_LEAST_ONCE = 1 until scala.Int.MaxValue
+  private[scalamock] val AT_LEAST_TWICE = 2 until scala.Int.MaxValue
 
   private[scalamock] val NO_MORE_THAN_ONCE = 0 to 1
   private[scalamock] val NO_MORE_THAN_TWICE = 0 to 2
